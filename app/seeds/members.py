@@ -3,7 +3,7 @@ from app.models.members import Member
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_memberss():
+def seed_members():
     member1 = Member(
         user_id=1, park_id=1)
     member2 = Member(

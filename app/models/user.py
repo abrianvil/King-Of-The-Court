@@ -20,8 +20,8 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     #relationships
-    user_to_members = db.relationship('UserPark', back_populates='members_to_user')
-    user_to_teams = db.relationship('Team', back_populates='teams_to_user')
+    users_to_members = db.relationship('Member', back_populates='members_to_users', primaryjoin='User.id == Member.user_id')
+    # user_to_teams = db.relationship('Team', back_populates='teams_to_user')
 
     @property
     def password(self):

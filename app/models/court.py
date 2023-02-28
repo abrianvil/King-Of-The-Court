@@ -5,7 +5,7 @@ class Court(db.Model):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-    
+
     id = db.Column(db.Integer, primary_key=True)
     park_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parks.id')), nullable=False)
     num_of_hoops = db.Column(db.Integer, nullable=False)
@@ -14,8 +14,8 @@ class Court(db.Model):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     #relationships
-    courts_to_parks = db.relationship('Park', back_populates='parks_to_courts')
-    
+    courts_to_park = db.relationship('Park', back_populates='park_to_courts')
+
 
     def to_dict(self):
         return {

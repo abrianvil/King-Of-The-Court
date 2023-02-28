@@ -7,7 +7,7 @@ class Park(db.Model):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(255), nullable=False)
@@ -21,8 +21,8 @@ class Park(db.Model):
 
     #relationships
     # user = db.relationship('User', back_populates='parks')
-    park_to_courts = db.relationship('Court', back_populates='courts_to_parks')
-    parks_to_members = db.relationship('UserPark', back_populates='members_to_parks')
+    park_to_courts = db.relationship('Court', back_populates='courts_to_park', cascade='all,delete')
+    parks_to_members = db.relationship('Member', back_populates='members_to_parks',primaryjoin='Park.id == Member.park_id')
 
     def to_dict(self):
         return {
