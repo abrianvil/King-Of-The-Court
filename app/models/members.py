@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class UserPark(db.Model):
-    __tablename__ = 'user_parks'
+class Member(db.Model):
+    __tablename__ = 'members'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -11,6 +11,8 @@ class UserPark(db.Model):
     park_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parks.id')), nullable=False)
 
     #relationships 
+    members_to_parks = db.relationship('Park', back_populates='parks_to_members')
+    members_to_users = db.relationship('User', back_populates='users_to_members')
 
     def to_dict(self):
         return {

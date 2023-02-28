@@ -14,6 +14,7 @@ class Court(db.Model):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     #relationships
+    courts_to_parks = db.relationship('Park', back_populates='parks_to_courts')
     
 
     def to_dict(self):
