@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 
     #relationships
     users_to_members = db.relationship('Member', back_populates='members_to_users', primaryjoin='User.id == Member.user_id')
-    user_to_user_teams = db.relationship('Team', back_populates='user_teams_to_user', primaryjoin='User.id == UserTeam.user_id')
+    user_to_user_teams = db.relationship('UserTeam', back_populates='user_teams_to_user', primaryjoin='User.id == UserTeam.user_id')
 
     @property
     def password(self):
