@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User
 
 user_routes = Blueprint('users', __name__)
@@ -17,3 +17,15 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+
+# def adminauthorized():
+#     """
+#     Returns unauthorized JSON when flask-login authentication fails
+#     """
+#     if current_user.is_authenticated:
+#         if current_user.email not "abel10@gmail.com" or current_user.email not "alexis@gmail.com":
+#             return {'errors': ['Unauthorized']}, 401
+#         else:
+#             return current_user.to_dict()
+#     return {'errors': ['Unauthorized']}, 401
