@@ -13,7 +13,7 @@ class Team(db.Model):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     #relationships
-    team_to_user_teams = db.relationship('UserTeam', back_populates='user_teams_to_team', primaryjoin='Team.id==UserTeam.team_id')
+    team_to_user_teams = db.relationship('UserTeam', back_populates='user_teams_to_team', primaryjoin='Team.id == UserTeam.team_id')
     team_to_game = db.relationship('Game', back_populates='game_to_team')
     team_to_queue = db.relationship('Queue', back_populates='queue_to_team', cascade="all,delete")
 
