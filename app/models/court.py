@@ -15,6 +15,7 @@ class Court(db.Model):
 
     #relationships
     courts_to_park = db.relationship('Park', back_populates='park_to_courts')
+    courts_to_game = db.relationship('Game', back_populates='game_to_court')
 
 
     def to_dict(self):

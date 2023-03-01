@@ -3,3 +3,7 @@ from .user import User
 from .parks import Park
 from .court import Court
 from .members import Member
+from .games import Game
+from .teams import Team
+from .userTeams import UserTeam
+from .queues import Queue
