@@ -13,6 +13,8 @@ from .api.members_routes import members_routes
 from .api.parks_routes import parks_routes
 from .api.team_routes import teams_routes
 from .api.game_routes import games_routes
+from .api.court_routes import courts_routes
+from .api.queue_routes import queue_routes
 
 from .seeds import seed_commands
 
@@ -40,6 +42,8 @@ app.register_blueprint(parks_routes, url_prefix='/api/parks')
 app.register_blueprint(members_routes, url_prefix='/api/members')
 app.register_blueprint(teams_routes, url_prefix='/api/teams')
 app.register_blueprint(games_routes, url_prefix='/api/games')
+app.register_blueprint(courts_routes, url_prefix='/api/courts')
+app.register_blueprint(queue_routes, url_prefix='/api/queue')
 db.init_app(app)
 Migrate(app, db)
 

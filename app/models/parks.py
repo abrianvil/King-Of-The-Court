@@ -33,4 +33,5 @@ class Park(db.Model):
             'location': self.location,
             'lat': self.lat,
             'lng': self.lng,
+            'courts':[park.to_dict() for park in self.park_to_courts]
         }
