@@ -32,5 +32,5 @@ class Park(db.Model):
             'image': self.image,
             'location': self.location,
             'lat': self.lat,
-            'lng': self.lng
+            'lng': self.lng,
         }
