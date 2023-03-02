@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('parks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
-    sa.Column('location', sa.String(length=255), nullable=False),
+    sa.Column('location', sa.String(length=255), nullable=False, unique=True),
     sa.Column('amenities', sa.String(length=1000), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('lat', sa.Float(), nullable=False),
