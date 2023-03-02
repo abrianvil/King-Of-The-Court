@@ -7,7 +7,7 @@ from app.models.members import Member
 
 members_routes = Blueprint('members', __name__)
 
-## get all members of current user
+## get all members 
 @members_routes.route('/all', methods=["GET"])
 @login_required
 def get_all_members():
@@ -16,6 +16,16 @@ def get_all_members():
         membersobj = [member.to_dict() for member in members]
         return jsonify(membersobj)
     return jsonify({'errors': 'No members available right now'}, 404)
+
+##get all parks by user id
+@members_routes.route('/current/all', methods=["GET"])
+@login_required
+def get_all_members_by_user():
+    memberships = Member.query.filter(Member.user_id == current_user.id).all()
+    if memberships:
+        membersobj = [member.to_dict() for member in memberships]
+        return jsonify(membersobj)
+    return jsonify({'errors': 'No memberships for user available'}, 404)
 
 ##SECTION - delete membership
 @members_routes.route('/<int:memberId>/delete', methods=["DELETE"])
