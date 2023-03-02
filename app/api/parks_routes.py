@@ -17,6 +17,15 @@ def get_all_parks():
         return jsonify(parkobj)
     return jsonify({'errors': 'No parks available right now'}, 404)
 
+##get one park by id
+@parks_routes.route('/<int:parkId>/one', methods=["GET"])
+@login_required
+def get_one_park(parkId):
+    park = Park.query.get(parkId)
+    if park:
+        return jsonify(park.to_dict())
+    return jsonify({'errors': 'No park found'}, 404)
+
 # make a park 
 @parks_routes.route('/create', methods=["POST"])
 @login_required
