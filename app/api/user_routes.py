@@ -19,13 +19,13 @@ def user(id):
     return user.to_dict()
 
 
-# def adminauthorized():
-#     """
-#     Returns unauthorized JSON when flask-login authentication fails
-#     """
-#     if current_user.is_authenticated:
-#         if current_user.email not "abel10@gmail.com" or current_user.email not "alexis@gmail.com":
-#             return {'errors': ['Unauthorized']}, 401
-#         else:
-#             return current_user.to_dict()
-#     return {'errors': ['Unauthorized']}, 401
+def adminauthorized():
+    """
+    Returns unauthorized not admin JSON when flask-login authentication fails
+    """
+    if current_user.is_authenticated:
+        if current_user.email == "abel10@gmail.com" or current_user.email == "alexis@gmail.com":
+            return current_user.to_dict()
+        else:
+            return {'errors': ['Unauthorized']}, 401
+    return {'errors': ['Unauthorized']}, 401

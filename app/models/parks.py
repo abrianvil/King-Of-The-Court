@@ -10,7 +10,7 @@ class Park(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    location = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False, unique=True)
     amenities = db.Column(db.String(1000), nullable=False)
     image = db.Column(db.String, default='https://womeninendo.org/wp-content/uploads/2021/11/no-image.png', nullable=False)
     #for google maps api
@@ -28,7 +28,7 @@ class Park(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'amenitites': self.description,
+            'amenitites': self.amenities,
             'image': self.image,
             'location': self.location,
             'lat': self.lat,
