@@ -5,7 +5,7 @@ class Team(db.Model):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-    
+
     id = db.Column(db.Integer, primary_key=True)
     game_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('games.id')), nullable=False)
     winner = db.Column(db.Boolean, nullable=False)
@@ -22,5 +22,6 @@ class Team(db.Model):
             'id': self.id,
             'game_id': self.game_id,
             'winner': self.winner,
+            'team_size': self.team_to_game.team_size,
             'created_at': self.created_at
-        }   
+        }
