@@ -8,6 +8,13 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.parks_routes import parks_routes
+from .api.members_routes import members_routes
+from .api.parks_routes import parks_routes
+from .api.team_routes import teams_routes
+from .api.game_routes import games_routes
+from .api.court_routes import courts_routes
+from .api.queue_routes import queue_routes
 
 from .seeds import seed_commands
 
@@ -31,6 +38,12 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(parks_routes, url_prefix='/api/parks')
+app.register_blueprint(members_routes, url_prefix='/api/members')
+app.register_blueprint(teams_routes, url_prefix='/api/teams')
+app.register_blueprint(games_routes, url_prefix='/api/games')
+app.register_blueprint(courts_routes, url_prefix='/api/courts')
+app.register_blueprint(queue_routes, url_prefix='/api/queue')
 db.init_app(app)
 Migrate(app, db)
 
