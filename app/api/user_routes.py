@@ -36,6 +36,18 @@ def edit_user(userId):
         return jsonify(user.to_dict(), 200)
     return jsonify({'errors': 'No user found'}, 404)
 
+#SECTION - delete user
+@user_routes.route('/<int:userId>/delete', methods=["DELETE"])
+@login_required
+def delete_user(userId):
+    user = User.query.get(userId)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify("Successfully deleted user")
+    return jsonify({'errors': 'No user found'}, 404)
+
+
 def adminauthorized():
     """
     Returns unauthorized not admin JSON when flask-login authentication fails
