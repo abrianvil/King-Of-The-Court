@@ -18,5 +18,7 @@ class Member(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'park_id': self.park_id
+            'park_id': self.park_id,
+            'parks': self.members_to_parks.to_dict(),
+            'users': self.members_to_users.to_dict()
         }
