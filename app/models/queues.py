@@ -21,5 +21,7 @@ class Queue(db.Model):
             'id': self.id,
             'game_id': self.game_id,
             'team_id': self.team_id,
-            'position': self.position
+            'position': self.position,
+            "game": self.queue_to_game.to_dict(),
+            "team": self.queue_to_team.to_dict()
         }
